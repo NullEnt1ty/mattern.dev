@@ -1,0 +1,26 @@
+---
+interface Props {
+	size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+const { size } = Astro.props;
+
+const sizes = {
+	sm: '640px',
+	md: '768px',
+	lg: '1024px',
+	xl: '1280px',
+};
+const containerWidth = size !== undefined ? sizes[size] : '60ch';
+---
+
+<div class="container">
+	<slot />
+</div>
+
+<style define:vars={{ containerWidth }}>
+	.container {
+		margin: auto;
+		max-width: var(--containerWidth);
+	}
+</style>
