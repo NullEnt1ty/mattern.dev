@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "deploy": "wrangler pages deploy --project-name mattern-dev-blog dist"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.0",
