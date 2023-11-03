@@ -6,8 +6,19 @@ cover:
   image: './2023-11-02-first-article.jpg'
   alt: 'A typewriter'
 ---
+import { Image } from 'astro:assets'
+import Alert from '../../components/Alert.astro'
+import AlertIcon from '../../components/AlertIcon.astro'
+import CoverImage from './2023-11-02-first-article.jpg'
 
 # My First Article
+
+<Image src={CoverImage} alt="A typewriter" />
+
+<Alert>
+   <AlertIcon />
+   <span>This article was entirely written by an AI and was not fact checked. Consider this as a fancy version of lorem ipsum.</span>
+</Alert>
 
 Welcome to my first article, where I'll be sharing some basic information about Markdown, the lightweight markup
 language used to format text for web content. Markdown is a simple and easy-to-learn syntax that allows you to create
@@ -58,12 +69,12 @@ elements:
    `![Image Alt Text](image_url)`.
 1. **Code Blocks**: Create code blocks by enclosing code in backticks or triple backticks. For inline code, use single
    backticks, like inline code. For code blocks, use triple backticks with a language specifier for syntax highlighting:
-    <pre>
-    ```python
-    def greet(name):
-        print(f"Hello, {name}!")
-    ```
-    </pre>
+   <pre>
+   ```python
+   def greet(name):
+     print(f"Hello, {name}!")
+   ```
+   </pre>
 
 This article itself is written in Markdown, which is why you see these formatting elements in action.
 

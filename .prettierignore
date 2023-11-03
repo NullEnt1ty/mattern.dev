@@ -3,3 +3,4 @@ dist/
 public/
 package-lock.json
 package.json
+src/content/**/*.mdx
