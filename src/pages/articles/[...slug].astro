@@ -1,7 +1,9 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Container from '../../components/Container.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 
 export async function getStaticPaths() {
 	const articles = await getCollection('articles');
@@ -12,12 +14,39 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<'articles'>;
 
-const post = Astro.props;
-const { Content } = await post.render();
+const article = Astro.props;
+const { Content } = await article.render();
 ---
 
-<Layout title={post.data.title}>
+<Layout title={article.data.title}>
 	<Container>
-		<Content />
+		<article>
+			<div class="article-header">
+				<h1>{article.data.title}</h1>
+				<FormattedDate date={article.data.publicationDate} />
+			</div>
+
+			{
+				article.data.cover ? (
+					<figure>
+						<Image src={article.data.cover.image} alt={article.data.cover.alt} />
+						{article.data.cover.caption ? <figcaption>{article.data.cover.caption}</figcaption> : null}
+					</figure>
+				) : null
+			}
+
+			<Content />
+		</article>
 	</Container>
 </Layout>
+
+<style>
+	.article-header {
+		margin-top: 1.2rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.article-header > * {
+		margin: 0;
+	}
+</style>

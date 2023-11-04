@@ -6,11 +6,12 @@ const articleCollection = defineCollection({
 		z.object({
 			title: z.string(),
 			description: z.string(),
-			publishDate: z.coerce.date(),
+			publicationDate: z.coerce.date(),
 			cover: z
 				.object({
 					image: image(),
 					alt: z.string(),
+					caption: z.string().optional(),
 				})
 				.optional(),
 		}),
