@@ -8,15 +8,13 @@ cover:
 ---
 import { Image } from 'astro:assets'
 import Alert from '../../components/Alert.astro'
-import AlertIcon from '../../components/AlertIcon.astro'
 import CoverImage from './2023-11-02-first-article.jpg'
 
 # My First Article
 
 <Image src={CoverImage} alt="A typewriter" />
 
-<Alert>
-   <AlertIcon />
+<Alert status="warning">
    <span>This article was entirely written by an AI and was not fact checked. Consider this as a fancy version of lorem ipsum.</span>
 </Alert>
 

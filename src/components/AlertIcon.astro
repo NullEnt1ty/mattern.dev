@@ -1,5 +1,18 @@
 ---
+interface Props {
+	status: 'success' | 'warning' | 'error' | 'info';
+}
 
+const { status } = Astro.props;
+
+const fgColors = {
+	success: '#38A169',
+	warning: '#DD6B20',
+	error: '#E53E3E',
+	info: '#3182ce',
+};
+
+const fgColor = fgColors[status];
 ---
 
 <span class="icon">
@@ -11,12 +24,12 @@
 	</svg>
 </span>
 
-<style>
+<style define:vars={{ fgColor }}>
 	.icon {
 		flex-shrink: 0;
 		width: 1.25rem;
 		height: 1.5rem;
 		margin-inline-end: 0.75rem;
-		color: #dd6b20;
+		color: var(--fgColor);
 	}
 </style>

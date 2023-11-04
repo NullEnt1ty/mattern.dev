@@ -1,12 +1,28 @@
 ---
+import AlertIcon from './AlertIcon.astro';
 
+interface Props {
+	status: 'success' | 'warning' | 'error' | 'info';
+}
+
+const { status } = Astro.props;
+
+const bgColors = {
+	success: '#C6F6D5',
+	warning: '#FEEBC8',
+	error: '#FED7D7',
+	info: '#bee3f8',
+};
+
+const bgColor = bgColors[status];
 ---
 
 <div class="alert">
+	<AlertIcon status={status} />
 	<slot />
 </div>
 
-<style>
+<style define:vars={{ bgColor }}>
 	.alert {
 		display: flex;
 		align-items: center;
@@ -14,7 +30,7 @@
 		padding-right: 1rem;
 		padding-top: 0.75rem;
 		padding-bottom: 0.75rem;
-		background-color: #feebc8;
+		background-color: var(--bgColor);
 		border-radius: 0.375rem;
 	}
 </style>
