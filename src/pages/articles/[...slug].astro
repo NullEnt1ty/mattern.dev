@@ -19,25 +19,25 @@ const { Content } = await article.render();
 ---
 
 <Layout title={article.data.title}>
-	<Container>
-		<article>
-			<div class="article-header">
-				<h1>{article.data.title}</h1>
-				<FormattedDate date={article.data.publicationDate} />
-			</div>
-
-			{
-				article.data.cover ? (
-					<figure>
-						<Image src={article.data.cover.image} alt={article.data.cover.alt} />
-						{article.data.cover.caption ? <figcaption>{article.data.cover.caption}</figcaption> : null}
-					</figure>
-				) : null
-			}
-
-			<Content />
-		</article>
-	</Container>
+	<main>
+		<Container>
+			<article>
+				<div class="article-header">
+					<h1>{article.data.title}</h1>
+					<FormattedDate date={article.data.publicationDate} />
+				</div>
+				{
+					article.data.cover ? (
+						<figure>
+							<Image src={article.data.cover.image} alt={article.data.cover.alt} />
+							{article.data.cover.caption ? <figcaption>{article.data.cover.caption}</figcaption> : null}
+						</figure>
+					) : null
+				}
+				<Content />
+			</article>
+		</Container>
+	</main>
 </Layout>
 
 <style>
