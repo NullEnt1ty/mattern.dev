@@ -19,8 +19,9 @@ const { Content } = await article.render();
 ---
 
 <Layout title={article.data.title}>
-	<main>
-		<Container>
+	<Container>
+		<a href="/">← Back to home</a>
+		<main>
 			<article>
 				<div class="article-header">
 					<h1>{article.data.title}</h1>
@@ -36,8 +37,8 @@ const { Content } = await article.render();
 				}
 				<Content />
 			</article>
-		</Container>
-	</main>
+		</main>
+	</Container>
 </Layout>
 
 <style>
