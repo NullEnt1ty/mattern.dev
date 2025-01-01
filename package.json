@@ -11,14 +11,14 @@
     "deploy": "wrangler pages deploy --project-name mattern-dev-blog dist"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "@astrojs/mdx": "^2.0.0",
-    "@astrojs/sitemap": "^3.0.3",
-    "astro": "^4.0.3",
-    "typescript": "^5.3.3"
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.0.3",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.1.1",
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "prettier": "^3.1.0",
-    "prettier-plugin-astro": "^0.12.2"
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
