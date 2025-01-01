@@ -1,6 +1,5 @@
 {
 	"editor.formatOnSave": true,
-	"eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
 	"[astro]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
