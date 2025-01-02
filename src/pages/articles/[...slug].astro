@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import FormattedDate from "@components/FormattedDate.astro";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
 	const articles = await getCollection("articles");
@@ -25,7 +26,10 @@ const { Content } = await article.render();
 			<article>
 				<div class="article-header">
 					<h1>{article.data.title}</h1>
-					<FormattedDate date={article.data.publicationDate} />
+					<div class="article-date">
+						<Icon name="far/clock" />
+						<FormattedDate date={article.data.publicationDate} />
+					</div>
 				</div>
 				{
 					article.data.cover ? (
@@ -52,7 +56,13 @@ const { Content } = await article.render();
 		margin-bottom: 1.2rem;
 	}
 
-	.article-header > * {
+	.article-header > h1 {
 		margin: 0;
+	}
+
+	.article-date {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 </style>
