@@ -1,17 +1,17 @@
 ---
-import AlertIcon from './AlertIcon.astro';
+import AlertIcon from "./AlertIcon.astro";
 
 interface Props {
-	status: 'success' | 'warning' | 'error' | 'info';
+	status: "success" | "warning" | "error" | "info";
 }
 
 const { status } = Astro.props;
 
 const bgColors = {
-	success: '#C6F6D5',
-	warning: '#FEEBC8',
-	error: '#FED7D7',
-	info: '#bee3f8',
+	success: "#C6F6D5",
+	warning: "#FEEBC8",
+	error: "#FED7D7",
+	info: "#bee3f8",
 };
 
 const bgColor = bgColors[status];

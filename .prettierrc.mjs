@@ -9,7 +9,5 @@ export default {
 			},
 		},
 	],
-	singleQuote: true,
 	useTabs: true,
-	printWidth: 120,
 };
