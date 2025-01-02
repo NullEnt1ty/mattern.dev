@@ -24,13 +24,13 @@ const { Content } = await article.render();
 		<a href="/">← Back to home</a>
 		<main>
 			<article>
-				<div class="article-header">
+				<header class="article-header">
 					<h1>{article.data.title}</h1>
 					<div class="article-date">
 						<Icon name="far/clock" />
 						<FormattedDate date={article.data.publicationDate} />
 					</div>
-				</div>
+				</header>
 				{
 					article.data.cover ? (
 						<figure>
