@@ -37,6 +37,7 @@ const { Content } = await article.render();
 							<Image
 								src={article.data.cover.image}
 								alt={article.data.cover.alt}
+								class="article-cover-image"
 							/>
 							{article.data.cover.caption ? (
 								<figcaption>{article.data.cover.caption}</figcaption>
@@ -64,5 +65,9 @@ const { Content } = await article.render();
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
+	}
+
+	.article-cover-image {
+		width: 100%;
 	}
 </style>
