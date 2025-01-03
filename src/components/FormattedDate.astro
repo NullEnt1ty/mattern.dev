@@ -6,13 +6,28 @@ interface Props {
 const { date } = Astro.props;
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		// Use the browser's locale to format the date
-		date.toLocaleDateString(undefined, {
+<time datetime={date.toISOString()} data-formatted-date>
+	{date.toISOString()}
+</time>
+
+<script>
+	const timeElements = document.querySelectorAll<HTMLTimeElement>(
+		"[data-formatted-date]",
+	);
+
+	for (const timeElement of timeElements) {
+		const date = new Date(timeElement.getAttribute("datetime")!);
+		const currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+		// Use the browser's locale and time zone to format the date
+		timeElement.textContent = date.toLocaleDateString(undefined, {
 			year: "numeric",
 			month: "short",
 			day: "numeric",
-		})
+			hour: "numeric",
+			minute: "numeric",
+			timeZoneName: "short",
+			timeZone: currentTimeZone,
+		});
 	}
-</time>
+</script>
