@@ -1,17 +1,21 @@
 ---
-title: 'My First Article'
-description: 'Markdown, the user-friendly markup language, is featured, showcasing its ease of use, readability, and widespread compatibility within content management systems for web content creation.'
-publicationDate: '2023-11-02T12:00:00+01:00'
+title: "My First Article"
+description: "Markdown, the user-friendly markup language, is featured, showcasing its ease of use, readability, and widespread compatibility within content management systems for web content creation."
+publicationDate: "2023-11-02T12:00:00+01:00"
 cover:
-  image: './2023-11-02-first-article.jpg'
-  alt: 'A typewriter'
-  caption: 'Image by Markus Winkler from Pixabay'
+  image: "./2023-11-02-first-article.jpg"
+  alt: "A typewriter"
+  caption: "Image by Markus Winkler from Pixabay"
 ---
 
-import Alert from '@components/Alert.astro'
+import Alert from "@components/Alert.astro";
+import Caption from "@components/Caption.astro";
 
 <Alert status="warning">
-   <span>This article was entirely written by an AI and was not fact checked. Consider this as a fancy version of lorem ipsum.</span>
+	<span>
+		This article was entirely written by an AI and was not fact checked.
+		Consider this as a fancy version of lorem ipsum.
+	</span>
 </Alert>
 
 Welcome to my first article, where I'll be sharing some basic information about Markdown, the lightweight markup
@@ -63,12 +67,10 @@ elements:
    `![Image Alt Text](image_url)`.
 1. **Code Blocks**: Create code blocks by enclosing code in backticks or triple backticks. For inline code, use single
    backticks, like inline code. For code blocks, use triple backticks with a language specifier for syntax highlighting:
-   <pre>
    ```python
    def greet(name):
      print(f"Hello, {name}!")
    ```
-   </pre>
 
 This article itself is written in Markdown, which is why you see these formatting elements in action.
 
