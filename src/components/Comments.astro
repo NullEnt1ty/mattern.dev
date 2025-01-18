@@ -1,0 +1,163 @@
+---
+
+---
+
+<div id="comments">
+	<div id="comments-placeholder">
+		<div class="load-comments-controls">
+			<button class="btn btn-primary" id="load-comments-button">
+				Load comments
+			</button>
+			<div>
+				<input type="checkbox" id="load-comments-remember-decision-checkbox" />
+				<label for="load-comments-remember-decision-checkbox">
+					Remember my decision
+				</label>
+			</div>
+		</div>
+
+		<p>
+			By clicking "Load comments," you agree to the loading of comments via
+			<a href="https://giscus.app">giscus</a>. This will establish connections
+			to third-party services. A session cookie will be stored in your browser
+			if you choose to sign in. This is used to keep you signed in.
+		</p>
+
+		<p>
+			Additionally, when checking the "Remember my decision" checkbox, a cookie
+			will be stored in your browser to remember your decision.
+		</p>
+	</div>
+</div>
+
+<style>
+	.load-comments-controls {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	#comments {
+		padding: 1rem;
+		margin-top: 2rem;
+		background-color: #f0f0f0;
+		border: 1px solid #e0e0e0;
+		border-radius: 0.375rem;
+	}
+</style>
+
+<script>
+	import {
+		initGiscusScript,
+		setAlwaysLoadComments,
+		getAlwaysLoadComments,
+	} from "../scripts/comments.js";
+
+	function loadComments() {
+		const commentsPlaceholderElement = document.getElementById(
+			"comments-placeholder",
+		);
+		if (commentsPlaceholderElement == null) {
+			throw new Error("Comments placeholder element not found");
+		}
+
+		const giscusScriptElement = initGiscusScript();
+		commentsPlaceholderElement.replaceWith(giscusScriptElement);
+
+		addAlwaysLoadCommentsCheckbox();
+	}
+
+	function addAlwaysLoadCommentsCheckbox() {
+		const commentsContainerElement = document.getElementById("comments");
+		if (commentsContainerElement == null) {
+			throw new Error("Comments container element not found");
+		}
+
+		const alwaysLoadCommentsCheckboxElement = document.createElement("input", {
+			is: "load-comments-checkbox",
+		});
+		alwaysLoadCommentsCheckboxElement.type = "checkbox";
+		alwaysLoadCommentsCheckboxElement.id = "always-load-comments-checkbox";
+
+		const alwaysLoadCommentsLabelElement = document.createElement("label");
+		alwaysLoadCommentsLabelElement.htmlFor = "always-load-comments-checkbox";
+		alwaysLoadCommentsLabelElement.textContent = "Always load comments";
+
+		commentsContainerElement.insertAdjacentElement(
+			"afterbegin",
+			alwaysLoadCommentsLabelElement,
+		);
+		commentsContainerElement.insertAdjacentElement(
+			"afterbegin",
+			alwaysLoadCommentsCheckboxElement,
+		);
+	}
+
+	function handleRememberLoadCommentsDecision() {
+		const loadCommentsRememberDecisionCheckbox = document.getElementById(
+			"load-comments-remember-decision-checkbox",
+		);
+
+		if (
+			loadCommentsRememberDecisionCheckbox != null &&
+			loadCommentsRememberDecisionCheckbox instanceof HTMLInputElement
+		) {
+			const alwaysLoadComments =
+				loadCommentsRememberDecisionCheckbox.checked ?? false;
+
+			if (alwaysLoadComments) {
+				setAlwaysLoadComments(true);
+			}
+		}
+	}
+
+	const loadCommentsButton = document.getElementById("load-comments-button");
+	loadCommentsButton?.addEventListener("click", () => {
+		handleRememberLoadCommentsDecision();
+		loadComments();
+	});
+
+	if (getAlwaysLoadComments()) {
+		// Load comments when the comments placeholder is in view
+		const commentsPlaceholderElement = document.getElementById(
+			"comments-placeholder",
+		);
+		if (commentsPlaceholderElement != null) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						loadComments();
+						observer.disconnect();
+					}
+				});
+			});
+			observer.observe(commentsPlaceholderElement);
+		}
+	}
+</script>
+
+<script>
+	import {
+		getAlwaysLoadComments,
+		setAlwaysLoadComments,
+	} from "../scripts/comments.js";
+
+	class LoadCommentsCheckbox extends HTMLInputElement {
+		connectedCallback() {
+			this.checked = getAlwaysLoadComments();
+			this.addEventListener("change", this.onChange);
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("change", this.onChange);
+		}
+
+		onChange = () => {
+			setAlwaysLoadComments(this.checked);
+		};
+	}
+
+	customElements.define("load-comments-checkbox", LoadCommentsCheckbox, {
+		extends: "input",
+	});
+</script>
