@@ -23,11 +23,16 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style is:global>
+	:root {
+		--text-color-primary: #454545;
+		/* TODO: Add more text colors (e.g. text-color-secondary) */
+	}
+
 	html {
 		font-family: ui-sans-serif, sans-serif;
 		line-height: 1.5;
 		padding-bottom: 6rem;
-		color: #454545;
+		color: var(--text-color-primary);
 	}
 
 	:where(img, video) {
@@ -42,5 +47,36 @@ const { title } = Astro.props;
 
 	:where(figure > figcaption) {
 		font-size: 0.8rem;
+	}
+
+	.btn {
+		--btn-padding-y: 0.375rem;
+		--btn-padding-x: 0.75rem;
+		--btn-border-width: 1px;
+		--btn-border-radius: 0.375rem;
+		--btn-border-color: transparent;
+		--btn-bg: transparent;
+		--btn-color: var(--text-color-primary);
+
+		display: inline-block;
+		padding: var(--btn-padding-y) var(--btn-padding-x);
+		border: var(--btn-border-width) solid var(--btn-border-color);
+		border-radius: var(--btn-border-radius);
+		background-color: var(--btn-bg);
+		color: var(--btn-color);
+		text-decoration: none;
+		text-align: center;
+		vertical-align: middle;
+		user-select: none;
+	}
+
+	.btn:not(:disabled) {
+		cursor: pointer;
+	}
+
+	.btn-primary {
+		--btn-bg: #0d6efd;
+		--btn-color: white;
+		--btn-border-color: #0d6efd;
 	}
 </style>
