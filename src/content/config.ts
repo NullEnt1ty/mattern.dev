@@ -14,6 +14,8 @@ const articleCollection = defineCollection({
 					caption: z.string().optional(),
 				})
 				.optional(),
+			author: z.string(),
+			keywords: z.array(z.string()),
 		}),
 });
 
